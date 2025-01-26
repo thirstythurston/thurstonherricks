@@ -1,0 +1,20 @@
+disabled = false
+languageCode = "en"
+languageName = "English"
+weight = 1
+title = "Thurston Herricks"
+
+[params]
+displayName = "EN"
+isoCode = "en"
+rtl = false
+dateFormat = "2 January 2006"
+# author = { name = "Thurston Herricks" }
+[params.author]
+# bio = "My Bio"
+email = "thurston.herricks@gmail.com"
+links = [
+    { instagram = "https://www.instagram.com/thurston_herricks" },
+    { linkedin = "https://www.linkedin.com/in/thurston-herricks-17884156" },
+    { github = "https://github.com/thirstythurston" },
+]

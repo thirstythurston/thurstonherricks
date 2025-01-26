@@ -1,0 +1,29 @@
+[[main]]
+ name = "About"
+ pageRef = "about"
+ weight = 10
+
+[[main]]
+ name = "Projects"
+ pageRef = "projects"
+ weight = 15
+
+[[main]]
+ name = "Publications"
+ pageRef = "publications"
+ weight = 16
+
+[[main]]
+  identifier = "linkedin"
+  pre = "linkedin"
+  url ="https://www.linkedin.com/in/thurston-herricks-17884156/"
+  weight = 400
+
+[[main]]
+  identifier = "github"
+  pre = "github"
+  url = "https://github.com/thirstythurston"
+  weight = 400
+
+[[footer]]
+none = "none"
