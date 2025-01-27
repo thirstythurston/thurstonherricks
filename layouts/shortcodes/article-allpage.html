@@ -1,5 +1,9 @@
 {{ $parent := .Page.RelPermalink }}
 <section class="space-y-10 w-full">
+    
+    {{ range .Site.AllPages }}
+    <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
+    {{ end }}
     {{ $RelPermalink := .Get "link" }}
     {{ range ( where .Site.AllPages "RelPermalink" $RelPermalink | first 1 ) }}
     {{ if not (eq .RelPermalink $parent) }}

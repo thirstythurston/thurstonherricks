@@ -13,11 +13,11 @@ cascade:
 
 
 {{< timelineItem icon="lightbulb" header="About Me" >}}
-{{< article-allpage link="/about/" >}}
+{{< article link="/about/" >}}
 {{< /timelineItem >}}
 
 {{< timelineItem icon="lightbulb" >}}
-{{< article-allpage link="/projects/nanoparticles/" >}}
+{{< article link="/projects/nanoparticles/" >}}
 {{< lead >}}  
 <div style="text-align: left"> 
 Synthesis and characterization of metalic nanoparticles
@@ -27,7 +27,7 @@ Synthesis and characterization of metalic nanoparticles
 {{< /timelineItem >}}
 
 {{< timelineItem icon="lightbulb" >}}
-{{< article-allpage link="/projects/malaria-research/" >}}
+{{< article link="/projects/malaria-research/" >}}
 {{< lead >}}  
 <div style="text-align: left"> 
 Biophysical measurements of malaria deformability and cytoadhesion
@@ -36,7 +36,7 @@ Biophysical measurements of malaria deformability and cytoadhesion
 {{< /timelineItem >}}
 
 {{< timelineItem icon="lightbulb"  >}}
-{{< article-allpage link="/projects/odelay/" >}}
+{{< article link="/projects/odelay/" >}}
 
 {{< lead >}}  
 <div style="text-align: left"> 
@@ -60,7 +60,3 @@ Work in progress
 {{< /timeline >}}
 
 ---
-
-{{ range .Site.AllPages }}
-  <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
-{{ end }}
