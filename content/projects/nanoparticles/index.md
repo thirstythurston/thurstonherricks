@@ -1,12 +1,12 @@
 ---
-title: Nanoparticle Sythesis
+title: Nanoparticle Synthesis
 tags: ["electron microscopy", "magnetism", "nanoparticle synthesis"]
 weight: 1
 ---
 
 
 
-At the University of Washington I synthesized different types of nanomaterials and characterized them using electron microscopy and various other techniques.  Below are a selection of the images that either are interesting to look at or contributed to publications.
+At the University of Washington, I synthesized various types of nanomaterials and characterized them using electron microscopy and other techniques. Below is a selection of images that are either visually interesting or contributed to publications.
 
 ---
 ## General Nanoparticle Synthesis
@@ -17,11 +17,14 @@ At the University of Washington I synthesized different types of nanomaterials a
     caption="The basic setup for most nanoparticle syntheis.  A three necked round bottom flask with a reflux condensor was heated in a oil bath.  Ethylene glycol with polyvinylpyrolidone was heated and then the metal salt disolved in solvent was rapidly injected into the solution.  As the metal salt was reduced by the ethylene glycol, samples were taken and diluted in cold ethanol for electron microscopy and spectrographic analysis.  The examples metal nanoparticles synethsized are shown below."
     >}}
 
-The nanoparticle synthesis methods we used were primarily reduction of the metal salts in ethylene glycol and under ambient atmosphere.  The lab was focused on developing ecologically friendly, water soluble chemistry without the need for organic solvents (though we used ethylene glycol).  These methods when appropriatly applied with temperature ramps and other methods to control nucleation allowed for interesting dendridic crystal shapes and in some cases monodispersed crystal shapes such as in silver cubes. Other projects I performed at this time included measuring magnetic properties of the materials using a SQUID (super-conducting quantum interfence detector) and electrospining various polymers. We were able to electrospin polymer enzyme composits that retained the enzymatic activity.  
+The nanoparticle synthesis methods we used primarily involved the reduction of metal salts in ethylene glycol under ambient atmosphere. The lab focused on developing ecologically friendly, water-soluble chemistry without relying on organic solvents (though we did use ethylene glycol). When appropriately applied with temperature ramps and other nucleation control methods, these techniques produced interesting dendritic crystal shapes and, in some cases, monodispersed crystal structures, such as silver cubes.
+
+Other projects I worked on during this time included measuring the magnetic properties of materials using a SQUID (superconducting quantum interference detector) and electrospinning various polymers. We successfully electrospun polymer-enzyme composites that retained enzymatic activity.
+
 
 ## Nanoparticles
 
-Here are examples of nanoparticles synthesized and some diffraction patterns.  These transmission electron microscope images were taken on a Phillips EM420, EM430, JOEL 2010F, Technai TF20 or a Topcon 002B.  Some pictures were solarized in photoshop because it looked pretty.   
+Here are examples of nanoparticles synthesized, along with some diffraction patterns. These transmission electron microscope images were taken using a Philips EM420, EM430, JEOL 2010F, Tecnai TF20, or Topcon 002B. Some images were solarized in Photoshop for aesthetic purposes.
 
 {{< gallery >}}
   <img src="nanoparticle-gallery\Ag221_175kX_0156.jpg" class="grid-w50 md:grid-w33 xl:grid-w25" />
