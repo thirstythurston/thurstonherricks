@@ -10,7 +10,7 @@ series: ["Live-Dead Assay"]
 series_order: 7
 ---
 
-Working on correct images for Descrition
+Working on correct images for Description
 
 WIP
 
