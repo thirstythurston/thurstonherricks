@@ -33,7 +33,7 @@ In this case a 8 x 12 array corresponding to the inner 96 wells of a 384 well pl
 
 This ODELAY method was considered moderate to high-throughput.  We later used it to better understand augment cryo-electron microscopy and X-ray crystal structures of the nuclear pore complex.  We did this by overlaying growth data of yeast strains with truncated protiens that made up the nuclear pore complex (nups).  
 
-{{< figure default=false  src="Nups_overview.png  " 
+{{< figure default=false  src="Nups_overview.png" 
     caption="ODELAY helped identify critical structural elements of the [nuclear pore complex](https://doi.org/10.1038/nature26003).  By measuring the growth rates of truncation mutants, we found that the severity of the growth defect corresponded to the importance of the truncated protein element. This technique enabled us to determine how different protein elements contribute to the structural stability of the nuclear pore complex."
     >}}
 
@@ -42,13 +42,13 @@ This ODELAY method was considered moderate to high-throughput.  We later used it
 We modified the ODELAY method and addapted the method for measuring growth of *Mycobacterium tuberculosis* (ODELAM), the organism that causes the respiratory disease tuberculosis.  Developing ODELAM required developing protocals and equipment that were compatible with working in a Biohazard Level 3 environment.   
 
 
-{{< figure default=false  src="ODELAM_process.png  " 
+{{< figure default=false  src="ODELAM_process.png" 
     caption=""
     >}}
 
 ODELAM required designing and fabricating a new growth chamber and techniques compatible with working entierly within a biological safety cabinet and was composed of materials that were compatible with decontamination solvents.  This included developing a tool to aide in spotting *Mycobacterium* cultures onto agar pads and a hermetically sealed growth chamber that safely contained the bacterium. 
 
-{{< figure default=false  src="ODELAM_output_example.png  " 
+{{< figure default=false  src="ODELAM_output_example.png" 
     caption=""
     >}}
 
