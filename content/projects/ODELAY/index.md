@@ -22,7 +22,9 @@ We developed the ODELAY! (One-Cell Doubling Evaluation of Living Arrays of Yeast
 
 ODELAY is a timelapse microscopy method that images arrays of cells spotted onto solid agar.  Dilute cultures are spotted in arrays such that multiple strain variants can be tested at a time.  
 
-{{< figure default=true  src="./ODELAY_overview.png  " 
+{{< figure 
+    default=true  
+    src="ODELAY_overview.png" 
     caption="ODELAY consists of a mount for the agar slide, timelapse imaging inside a microscope incubator and software to extract colony area over time."
     >}}
 
