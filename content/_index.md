@@ -60,3 +60,7 @@ Work in progress
 {{< /timeline >}}
 
 ---
+
+{{ range .Site.AllPages }}
+  <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
+{{ end }}
