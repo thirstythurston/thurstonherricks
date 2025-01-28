@@ -10,9 +10,9 @@ series_order: 1
 
 ## Preface
 
-This project is essentially taking the TensorFlow [Image Segmentation tutorial](https://www.tensorflow.org/tutorials/images/segmentation) and converting it into Pytorch. When I started this project in 2019 I was just learning python on still hadn't really explored different neural network toolsets.  When I picked up TensorFlow again later I ran into several problems when trying to adapt this tutorial to the live-dead assay.  Specifically, functions like using class weights for sparse cross-entropy loss functions was difficult to implement.  Some updates to the data generators were not functional and when I looked at the source it looked like code from another language was copied and pasted into the method.  Several issues in the GitHub repository had been open for years and honestly it looked like the codebase was being maintained by poorly supervised interns.    The code appears to be abandoned and consequently I gave up on TensorFlow.  
+This project is essentially taking the TensorFlow [Image Segmentation tutorial](https://www.tensorflow.org/tutorials/images/segmentation) and converting it into PyTorch. When I started this project in 2019 I was just learning python on still hadn't really explored different neural network toolsets.  When I picked up TensorFlow again later I ran into several problems when trying to adapt this tutorial to the live-dead assay.  Specifically, functions like using class weights for sparse cross-entropy loss functions was difficult to implement.  Some updates to the data generators were not functional and when I looked at the source it looked like code from another language was copied and pasted into the method.  Several issues in the GitHub repository had been open for years and honestly it looked like the codebase was being maintained by poorly supervised interns.    The code appears to be abandoned and consequently I gave up on TensorFlow.  
 
-However, I thought the Image Segmentation tutorial was really good and still potentially usefull so I decided to addapt the tutorial to Pytorch. 
+However, I thought the Image Segmentation tutorial was really good and still potentially usefull so I decided to addapt the tutorial to PyTorch. 
 
 ## Macrophages and Mycobacterium Tuberculosis
 

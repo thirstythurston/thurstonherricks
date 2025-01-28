@@ -49,7 +49,7 @@ Timelapse assay to measure growth heterogeneity in yeast and <i>Mycobacterium tu
 {{< article-allpage link="/projects/macrophage-assay/" >}}
 {{< lead >}}
 <div style="text-align: left">  
-AI/ML stain free assay to identify living and dead macrophages
+AI/ML stain-free assay to identify living and dead macrophages
 
 Work in progress
 </div>

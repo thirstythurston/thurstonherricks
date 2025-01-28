@@ -1,8 +1,9 @@
 ---
-title: "Stitching Images together"
+title: "Stitching Images Together"
 description: "Using FFTs to stitch images together"
 date: "2024-11-30"
 lastmod: "2024-11-30"
+draft: true
 weight: 7
 tags: []
 

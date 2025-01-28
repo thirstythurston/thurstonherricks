@@ -12,7 +12,7 @@ dateFormat = "2 January 2006"
 # author = { name = "Thurston Herricks" }
 [params.author]
 # bio = "My Bio"
-email = "thurston.herricks@gmail.com"
+# email = "thurston.herricks@gmail.com"
 links = [
     { instagram = "https://www.instagram.com/thurston_herricks" },
     { linkedin = "https://www.linkedin.com/in/thurston-herricks-17884156" },

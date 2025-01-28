@@ -56,7 +56,7 @@ showTaxonomies = true
 showAuthorsBadges = false
 showWordCount = false
 showZenMode = false
-sharingLinks = ["email"]
+# sharingLinks = ["email"]
 
 [list]
 showHero = false
