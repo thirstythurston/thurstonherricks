@@ -203,8 +203,8 @@ class UpSample(nn.Module):
 ```
 
 
-### Organizing the Blocks
-The explicit definition of the blocks is given here for study.  There may be other elegant methods for generating the network structure but sometimes a hard coded structure is beneficial from a learning and reading standpoint.  Please note that MobileNet was designed to have RGB input images, but the microscopy images we have are just 16bit unsigned integers.  There are two solutions to adapting the network.  The first is to replicate the images so that the correct data dimensions (m*x*m*x*3) are fed into the network.  The dimensions are increased the x.repeat(1,3,1,1) statement in the forward function.  The other option is sum across the 3rd dimension of the convolutional filters when loading the model weights.  I don't have the second method presented here but may add it in at a later date.
+### Organizing the Mobilnet Blocks
+The explicit definition of the blocks is given here for study.  There may be other much more elegant methods for generating the network structure but sometimes a hard coded structure is beneficial from a learning and reading standpoint.  Please note that MobileNet was designed to have RGB input images, but the microscopy images we have are just 16bit unsigned integers.  There are two solutions to adapting the network input from the 3 input channels to the single image channel.  The first is to replicate the images so that the correct data dimensions (m*x*m*x*3) are fed into the network.  The dimensions are increased the x.repeat(1,3,1,1) statement in the forward function.  The other option is sum across the 3rd dimension of the convolutional filters when loading the model weights.  I don't have the second method presented here but may add it in at a later date.
 
 ```python
 class Unet_MNv2(nn.Module):
@@ -354,11 +354,11 @@ class Unet_MNv2(nn.Module):
 
 ### Importing Imagenet Weights the hacky way
 
-Download the weights for Imagenet.  the file is mobilenet_v2_weights_tf_dim_ordering_tf_kernels_1.0_160_no_top.hdf5
+Download the weights for Imagenet.  The name of the file is: "mobilenet_v2_weights_tf_dim_ordering_tf_kernels_1.0_160_no_top.hdf5"
 
-load the hdf5 file as a dictionary and find the layers
+Next we need to load the hdf5 file as a dictionary and find the layers.  I have a hdf5 loader that I use as a utility function in the ODELAY package.
 
-Then write out a list of layers 
+Then write out a list of layers and line them up.  The following script works to take the Mobilnetv2 definintion above and in the tensorflow weights.  
 
 
 ```python
