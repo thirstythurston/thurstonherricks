@@ -3,10 +3,10 @@ title: "The DCNN U-Net Model"
 description: "This is a Unet model based on Mobilenet v2 and Pix2Pix"
 date: "2024-12-01"
 lastmod: "2024-12-01"
-weight: 4
+weight: 3
 # layout: "simple"
 series: ["Live-Dead Assay"]
-series_order: 4
+series_order: 3
 ---
 
 

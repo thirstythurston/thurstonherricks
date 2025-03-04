@@ -4,6 +4,7 @@ description: "Multiprocessing to serve training data to the model "
 date: "2024-11-27"
 lastmod: "2024-11-27"
 weight: 3
+draft: true
 
 tags: []
 series: ["Live-Dead Assay"]
