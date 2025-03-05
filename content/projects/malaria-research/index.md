@@ -1,5 +1,5 @@
 ---
-title:  "Malaria Research"
+title:  "Malaria Microfluidics Research"
 description:  "Investigating deformability and cytoadhesion of malaria"
 tags:  ["microfluidics", "machine vision", "clinical studies"]
 weight: 2

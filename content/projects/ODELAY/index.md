@@ -1,5 +1,5 @@
 ---
-title: "ODELAY!"
+title: "ODELAY! and ODELAM!"
 description: "One-Cell Doubling Evaluation of Living Arrays of Yeast"
 tags: ["yeast", "high-content-screaning", "python"]
 weight: 3

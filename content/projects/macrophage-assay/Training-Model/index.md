@@ -26,9 +26,9 @@ The final dataset dimensions are:
 
 The data was organized 100 sample batches and split into 2620 training batches and 290 validation batches. A roughly 90:10 train-test split. A single epoch was about 600 seconds when training two models with different hyperparameters.
 
-## Training Experiments Comparing Learning Rate Schedulers
+## Training Experiments Comparing Optimizers and Learning Rate Schedulers
 
-Compairing Adam and SGD optimizer.
+### Compairing Adam and SGD optimizer.
 
 {{< figure default=true  src="Adam_vs_SGD_training.png" 
     width=500px
@@ -36,8 +36,9 @@ Compairing Adam and SGD optimizer.
     caption="Comparison of Adam and Stochastic Gradient Descent.  While Adam with Cosine Annealing had better training loss scores, the validation and precision-recal area under the curve scores were not better than Stocastic Gradient Descent with Reduced Learning Rate on Plataeu."
     >}}
 
-Because the cosine annealing showed good learning by loss but didn't outperform Stochastic Gradient Descent (SGD)with Reduced Learning Rate on Plateau.  I made a hybrid of the two learning rate schedulers though it still needs some tweaking.  
+Previously, I had used Adam as an optimizer and had what I thought were good results.  But when inspecting the images, the models were not predicting cell area or the DAPI and Cy5 channels well.  I simplified the model to reduce the number of classes to 3:  background, DAPI, and Cy5. I hoped that would improve training by reducing complexity of the model.  I kept everything else the same and used cosine annealing with warm restarts because initially the loss values looked good. However when compairing more metrics such as precision and recall, Adam performed poorly compared to  Stochastic Gradient Descent (SGD) with Reduced Learning Rate on Plateau.  Over a weekend, I made a hybrid of the two learning rate schedulers though it still needs some tweaking.  
 
+### Compairing Learning Rate Schedulers and Class Weights
 {{< figure default=true  src="Compair_scheduling_functions.png" 
     width=500px
     nozoom=false
@@ -46,6 +47,10 @@ Because the cosine annealing showed good learning by loss but didn't outperform 
 
 The Cosine Annealing with Kicks seemed to provide slightly better results on the area under precision-recall curve for the DAPI (HOECHST) channel and similar results for the same measure of the Cy5 channel.  Since the training loss and validation loss don't appear to be diverging the model is still underfitting after 100 epochs.  
 
-Next steps are to show training progress as it applies to image segmentation and to apply the model to real images. And to change the model arcitecture to produce 
+### Visualizing Classification During Training
+
+{{< youtubeLite id="TbmeVt5gi2s" label="SGD optimizer using Cosine Annealing with Kicks Visualization" autoplay=true >}}
+
+The above video shows how image classisifcation progresses with training over 100 epochs.  True positive (TP) classifications are shown in green. False positives or False negatives (FP|FN) are shown in red or blue for the respective Cy5 or DAPI channel.   After epoch 60 or so the model begins refining and the precision recal curves do tend move up and to the right indicating better performance.  
 
 This is a work in progress and will be updated as the project progresses.  
