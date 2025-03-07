@@ -14,7 +14,7 @@ weight: 3
 
 Growth is the most sensitive indicator of genetic fitness.  Baker's yeast is a especially attractive organism for study due to its ease of cultivation and it's genetic tractability.  However, not all cells that are genetically identical grow at the same rate; they have heterogenious growth rates.   
 
-We developed the ODELAY! (One-Cell Doubling Evaluation of Living Arrays of Yeast) method,  using timelapse microscopy to quantify heterogenious growth of large numbers of individual yeast cells growing into colonies.  The goal of this project was to create a high-throughput growth assay that could measure this growth heterogeneity as growth heterogeneity may provide an additional dimension for characterizing genetic interactions. 
+We developed the [ODELAY! (One-Cell Doubling Evaluation of Living Arrays of Yeast)](https://github.com/thirstythurston/odelay) method,  using timelapse microscopy to quantify heterogenious growth of large numbers of individual yeast cells growing into colonies.  The goal of this project was to create a high-throughput growth assay that could measure this growth heterogeneity as growth heterogeneity may provide an additional dimension for characterizing genetic interactions. 
 
 ## ODELAY
 

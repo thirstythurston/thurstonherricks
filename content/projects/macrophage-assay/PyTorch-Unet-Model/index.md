@@ -226,7 +226,7 @@ class Unet_MNv2(nn.Module):
         input_channel = 32
 
         interverted_residual_setting = [
-            # t =  expansion factor
+            # t =  expansion factor?
             # c = convolutional filters or output channels
             # n = repeated blocks per layer
             # s = stride
@@ -240,44 +240,48 @@ class Unet_MNv2(nn.Module):
             [6, 320, 1, 1], # blk 16
         ]
 
+        # featurs is the list of layers in the model?
         # Conv2d then batch2dnorm then Relu6 stride 2 reduces input size by 1/2 input eg 128 x 128 to 64 x 64 
-        self.input_bneck  = conv_bneck(input_layers, 32, 2) 
-         # Expand Convolutional block Special case as per the table
-        self.invres_blk00 = invRes_block(inp = 32,  oup = 16,  stride = 1, expand_ratio = 1)
+        self.encoder_input = conv_bneck(input_layers, 32, 2) 
+        
+        # Expand Convolutional block Special case
+        self.encoder_blk00 = invRes_block(inp = 32,  oup = 16,  stride = 1, expand_ratio = 1) 
+        
         # get 'block_1_expand_relu' skip connection 96x64x64 to decode_blk04
-        self.invres_blk01_ReLu = invRes_block_A(inp = 16,  oup = 24,  stride = 2, expand_ratio = 6)
-        # stride 2 reduces input size by 1/4 input eg 128 x 128 to 32 x 32
-        self.invres_blk01_DwPr = invRes_block_B(inp = 16,  oup = 24,  stride = 2, expand_ratio = 6) 
-        self.invres_blk02 = invRes_block(inp = 24,  oup = 24,  stride = 1, expand_ratio = 6) 
+        self.encoder_blk01_ReLu = invRes_block_A(inp = 16,  oup = 24,  stride = 2, expand_ratio = 6)
+         # stride 2 reduces input size by 1/4 input eg 128 x 128 to 32 x 32 
+        self.encoder_blk01_DwPr = invRes_block_B(inp = 16,  oup = 24,  stride = 2, expand_ratio = 6)
+        self.encoder_blk02 = invRes_block(inp = 24,  oup = 24,  stride = 1, expand_ratio = 6) 
         
-        # get 'block_3_expand_relu' skip connection 144x32x32 to decode_blk03
-        self.invres_blk03_ReLu = invRes_block_A(inp = 24,  oup = 32,  stride = 2, expand_ratio = 6) 
+        # get 'block_3_expand_relu' skip connection 144x32x32 to decode_blk03  
+        self.encoder_blk03_ReLu = invRes_block_A(inp = 24,  oup = 32,  stride = 2, expand_ratio = 6)
         # stride 2 reduces input size by 1/8 input eq 128 x128 to 16 x 16
-        self.invres_blk03_DwPr = invRes_block_B(inp = 24,  oup = 32,  stride = 2, expand_ratio = 6) 
-        self.invres_blk04 = invRes_block(inp = 32,  oup = 32,  stride = 1, expand_ratio = 6)
-        self.invres_blk05 = invRes_block(inp = 32,  oup = 32,  stride = 1, expand_ratio = 6) 
-        # get 'block_6_expand_relu' skip connection 192x16x16 skip to to decode blk02 
-        self.invres_blk06_ReLu = invRes_block_A(inp = 32,  oup = 64,  stride = 2, expand_ratio = 6) 
-        # stride 2 reduces input size by 1/16 input eg 128 x 128 to 8 x 8
-        self.invres_blk06_DwPr = invRes_block_B(inp = 32,  oup = 64,  stride = 2, expand_ratio = 6) 
-        self.invres_blk07 = invRes_block(inp = 64,  oup = 64,  stride = 1, expand_ratio = 6)
-        self.invres_blk08 = invRes_block(inp = 64,  oup = 64,  stride = 1, expand_ratio = 6)
-        self.invres_blk09 = invRes_block(inp = 64,  oup = 64,  stride = 1, expand_ratio = 6)
-        
-        self.invres_blk10 = invRes_block(inp = 64,  oup = 96,  stride = 1, expand_ratio = 6)
-        self.invres_blk11 = invRes_block(inp = 96,  oup = 96,  stride = 1, expand_ratio = 6) 
-        self.invres_blk12 = invRes_block(inp = 96,  oup = 96,  stride = 1, expand_ratio = 6)
-        
-        # get 'block_13_expand_relu' skip connection of dim 576x8x8 to decode blk01 
-        self.invres_blk13_ReLu = invRes_block_A(inp = 96,  oup = 160, stride = 2, expand_ratio = 6) 
-        # stride 2 reduces input size by 1/32 input 128 x 128 to 4 x 4 
-        self.invres_blk13_DwPr = invRes_block_B(inp = 96,  oup = 160, stride = 2, expand_ratio = 6) 
-        self.invres_blk14 = invRes_block(inp = 160, oup = 160, stride = 1, expand_ratio = 6) 
-        self.invres_blk15 = invRes_block(inp = 160, oup = 160, stride = 1, expand_ratio = 6)
-        # get 'block_16_project' skip connection as output to Decoder blk01 320x4x4
-        self.invres_blk16 = invRes_block(inp = 160, oup = 320, stride = 1, expand_ratio = 6) 
+        self.encoder_blk03_DwPr = invRes_block_B(inp = 24,  oup = 32,  stride = 2, expand_ratio = 6)
+        self.encoder_blk04 = invRes_block(inp = 32,  oup = 32,  stride = 1, expand_ratio = 6)
+        self.encoder_blk05 = invRes_block(inp = 32,  oup = 32,  stride = 1, expand_ratio = 6) 
 
+        # get 'block_6_expand_relu' skip connection 192x16x16 skip to to decode blk02 
+        self.encoder_blk06_ReLu = invRes_block_A(inp = 32,  oup = 64,  stride = 2, expand_ratio = 6) 
+        # stride 2 reduces input size by 1/16 input eg 128 x 128 to 8 x 8
+        self.encoder_blk06_DwPr = invRes_block_B(inp = 32,  oup = 64,  stride = 2, expand_ratio = 6) 
+        self.encoder_blk07 = invRes_block(inp = 64,  oup = 64,  stride = 1, expand_ratio = 6)
+        self.encoder_blk08 = invRes_block(inp = 64,  oup = 64,  stride = 1, expand_ratio = 6)
+        self.encoder_blk09 = invRes_block(inp = 64,  oup = 64,  stride = 1, expand_ratio = 6)
+        
+        self.encoder_blk10 = invRes_block(inp = 64,  oup = 96,  stride = 1, expand_ratio = 6)
+        self.encoder_blk11 = invRes_block(inp = 96,  oup = 96,  stride = 1, expand_ratio = 6) 
+        self.encoder_blk12 = invRes_block(inp = 96,  oup = 96,  stride = 1, expand_ratio = 6)
+        # get 'block_13_expand_relu' skip connection of dim 576x8x8 to decode blk01 
+        self.encoder_blk13_ReLu = invRes_block_A(inp = 96,  oup = 160, stride = 2, expand_ratio = 6) 
+        # stride 2 reduces input size by 1/32 input 128 x 128 to 4 x 4 
+        self.encoder_blk13_DwPr = invRes_block_B(inp = 96,  oup = 160, stride = 2, expand_ratio = 6) 
+        self.encoder_blk14 = invRes_block(inp = 160, oup = 160, stride = 1, expand_ratio = 6) 
+        self.encoder_blk15 = invRes_block(inp = 160, oup = 160, stride = 1, expand_ratio = 6)
+        
+        # get 'block_16_project' skip connection as output to Decoder blk01 320x4x4
+        self.encoder_blk16 = invRes_block(inp = 160, oup = 320, stride = 1, expand_ratio = 6)
         # input channels include conncatination of skip connection outputs.
+
         # convtranspose2d with stride of 2 should give a input 320x4x4  to 512x8x8
         self.decoder_blk01 = decode_block(inp = 320, oup = 512, kernel_size = 4, stride = 2, padding = 1, dropout = False)  
         
@@ -303,51 +307,58 @@ class Unet_MNv2(nn.Module):
 
     def forward(self, x):
         
-        e_inp = self.input_bneck(x.repeat(1,3,1,1))
-        e00 = self.invres_blk00(e_inp)
+        e_inp = self.encoder_input(x.repeat(1,3,1,1))
+        e00 = self.encoder_blk00(e_inp)
         
-        e01_ReLu = self.invres_blk01_ReLu(e00)
-        e01 = self.invres_blk01_DwPr(e01_ReLu)
-        e02 = self.invres_blk02(e01)
+        e01_ReLu = self.encoder_blk01_ReLu(e00)
+        e01 = self.encoder_blk01_DwPr(e01_ReLu)
+        e02 = self.encoder_blk02(e01)
         
-        e03_ReLu = self.invres_blk03_ReLu(e02)
-        e03 = self.invres_blk03_DwPr(e03_ReLu)
-        e04 = self.invres_blk04(e03)
-        e05 = self.invres_blk05(e04)
+        e03_ReLu = self.encoder_blk03_ReLu(e02)
+        e03 = self.encoder_blk03_DwPr(e03_ReLu)
+        e04 = self.encoder_blk04(e03)
+        e05 = self.encoder_blk05(e04)
 
-        e06_ReLu = self.invres_blk06_ReLu(e05)
-        e06 = self.invres_blk06_DwPr(e06_ReLu)
-        e07 = self.invres_blk07(e06)
-        e08 = self.invres_blk08(e07)
-        e09 = self.invres_blk09(e08)
-        e10 = self.invres_blk10(e09)
-        e11 = self.invres_blk11(e10)
-        e12 = self.invres_blk12(e11)
+        e06_ReLu = self.encoder_blk06_ReLu(e05)
+        e06 = self.encoder_blk06_DwPr(e06_ReLu)
+        e07 = self.encoder_blk07(e06)
+        e08 = self.encoder_blk08(e07)
+        e09 = self.encoder_blk09(e08)
+        e10 = self.encoder_blk10(e09)
+        e11 = self.encoder_blk11(e10)
+        e12 = self.encoder_blk12(e11)
 
-        e13_ReLu = self.invres_blk13_ReLu(e12)
-        e13 = self.invres_blk13_DwPr(e13_ReLu)
-        e14 = self.invres_blk14(e13)
-        e15 = self.invres_blk15(e14)
-        e16 = self.invres_blk16(e15) #320x4x4
+        e13_ReLu = self.encoder_blk13_ReLu(e12)
+        e13 = self.encoder_blk13_DwPr(e13_ReLu)
+        e14 = self.encoder_blk14(e13)
+        e15 = self.encoder_blk15(e14)
+        e16 = self.encoder_blk16(e15) #320x4x4
 
         d01 = self.decoder_blk01(e16) 
-        # concatinate 512x8x8 from decoder_blk01 and 576x8x8 from reLu_blk13 for 1088x8x8 input
-        cat01 = torch.cat((d01, e13_ReLu), dim = 1) 
+
+         # concatinate 512x8x8 from decoder_blk01 and 
+         # 576x8x8 from reLu_blk13 for 1088x8x8 input
+        cat01 = torch.cat((d01, e13_ReLu), dim = 1)
         
         d02 = self.decoder_blk02(cat01)
-        # concatinate 256x16x16from decoder_blk02 and 192x16x16 from reLu_blk06 for 448x16x16 input
+        # concatinate 256x16x16from decoder_blk02 and 
+        # 192x16x16 from reLu_blk06 for 448x16x16 input
         cat02 = torch.cat((d02, e06_ReLu), dim = 1) 
 
         d03 = self.decoder_blk03(cat02)
-         # concatinate 128x32x32 from decoder_blk03 and 144x32x32 from reLu_blk03 for 272x32x32 input
-        cat03 = torch.cat((d03, e03_ReLu), dim = 1)
+        # concatinate 128x32x32 from decoder_blk03 
+        # and 144x32x32 from reLu_blk03 for 272x32x32 input
+        cat03 = torch.cat((d03, e03_ReLu), dim = 1) 
 
         d04 = self.decoder_blk04(cat03)
-        # concatinate 64x64x64 from decoder_blk04 and 96x64x64 from reLu_blk01 for 160x64x64 input
-        cat04 = torch.cat((d04, e01_ReLu), dim = 1) 
+         # concatinate 64x64x64 from decoder_blk04 
+         # and 96x64x64 from reLu_blk01 for 160x64x64 input
+        cat04 = torch.cat((d04, e01_ReLu), dim = 1)
+
         out = self.decoder_2dTrp(cat04)
 
         return out
+
 
 ```
 
@@ -363,13 +374,16 @@ Then write out a list of layers and line them up.  The following script works to
 
 ```python
 
-def add_imagenet_weights(path_to_weights):
-    # The file you need to find is mobilenet_v2_weights_tf_dim_ordering_tf_kernels_1.0_160_no_top.hdf5
-    weights_path = pathlib.Path(path_to_weights)
-    # this is a hdf5 reader. 
+def add_imagenet_weights(self, weights_path = None, requires_grad: bool = False):
+        
+    if weights_path is None:
+        weights_path = pathlib.Path("E:/MAc 2021-03-25 Exp v1 Data/PyTorch_2024-10-23/Keras_Mobilenetv2_Weights/mobilenet_v2_weights_tf_dim_ordering_tf_kernels_1.0_160_no_top.hdf5")
     tf2_mobilenetv2_weights = fio.loadData(weights_path)
 
-    # t = expansion factor
+    if requires_grad is None:
+        requires_grad = False
+
+    # t =  expansion factor?
     # c = convolutional filters or output channels
     # n = repeated blocks per layer
     # s = stride
@@ -387,12 +401,12 @@ def add_imagenet_weights(path_to_weights):
     for t,c,n,s in MNv2_layers:
         for i in range(n):
             if t == 1:
-                seq_layers  = [f'mobl{blk}_conv_{blk}_depthwise',
-                            f'bn{blk}_conv_{blk}_bn_depthwise-weight',
-                            f'bn{blk}_conv_{blk}_bn_depthwise-bias',
-                            f'mobl{blk}_conv_{blk}_project',
-                            f'bn{blk}_conv_{blk}_bn_project-weight',
-                            f'bn{blk}_conv_{blk}_bn_project-bias'] 
+                seq_layers  = [ f'mobl{blk}_conv_{blk}_depthwise',
+                                f'bn{blk}_conv_{blk}_bn_depthwise-weight',
+                                f'bn{blk}_conv_{blk}_bn_depthwise-bias',
+                                f'mobl{blk}_conv_{blk}_project',
+                                f'bn{blk}_conv_{blk}_bn_project-weight',
+                                f'bn{blk}_conv_{blk}_bn_project-bias'] 
             else:
                 seq_layers =  [ f'mobl{blk}_conv_{blk}_expand',
                                 f'bn{blk}_conv_{blk}_bn_expand-weight',
@@ -409,32 +423,37 @@ def add_imagenet_weights(path_to_weights):
 
 
     batch_norm = {'weight': 'beta:0', 'bias':'gamma:0'}
-    model = Unet_MNv2()
-    model_state_dict = model.state_dict()
+    model_state_dict = self.state_dict()
     mobilnet_weights = {}
-    for (name, py_param), layer_name in zip(model.named_parameters(), btlnk_layer_names):
+    for (name, py_param), layer_name in zip(self.named_parameters(), btlnk_layer_names):
         name2 = 'weight'
         split_name = layer_name.split('-')
         if len(split_name)==2:
             tf_param = tf2_mobilenetv2_weights[split_name[0]][split_name[0]][batch_norm[split_name[1]]]
             model_state_dict[name] = torch.from_numpy(tf_param.astype('float32'))
-            model_state_dict[name].requires_grad = False
+            model_state_dict[name].requires_grad = requires_grad
             
         else:
             if split_name[0].split('_')[-1] == 'depthwise':
                 tf_param = tf2_mobilenetv2_weights[split_name[0]][split_name[0]]['depthwise_kernel:0']
                 tf_param =  np.transpose(tf_param, axes = (2,3,0,1))
                 model_state_dict[name] = torch.from_numpy(tf_param.astype('float32'))
-                model_state_dict[name].requires_grad = False
+                model_state_dict[name].requires_grad = requires_grad
             else:
                 tf_param = tf2_mobilenetv2_weights[split_name[0]][split_name[0]]['kernel:0']
                 tf_param = np.transpose(tf_param, axes = (3,2,0,1))
                 model_state_dict[name] = torch.from_numpy(tf_param.astype('float32'))
-                model_state_dict[name].requires_grad = False
+                model_state_dict[name].requires_grad = requires_grad
 
-    model.load_state_dict(model_state_dict)
+    self.load_state_dict(model_state_dict)
 
-    return model
+    # Set layers for freezeing. 
+    # Remeber to add code filter(lambdailter(lambda p: p.requires_grad, mode.parameters())
+    # to the optimizer otherwise the weights will still be changed.  
+    for name, param in self.named_parameters():
+        if name.split('_')[0] == 'encoder':
+            param.requires_grad = requires_grad
 
+    return None
 
 ```
